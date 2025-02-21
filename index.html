@@ -238,36 +238,32 @@
     </div>  
 </div>  
 
-<script>  
-    // تنظیمات Firebase  
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDWoD7zEs4ReTNpm929WKERKni8s_AVPtY",
-  authDomain: "tashdidevents.firebaseapp.com",
-  projectId: "tashdidevents",
-  storageBucket: "tashdidevents.firebasestorage.app",
-  messagingSenderId: "368678384446",
-  appId: "1:368678384446:web:c039103ba29ce5b7d6b26f",
-  measurementId: "G-T9R0GKXJ16"
-};
+<script>
+   import { initializeApp } from "firebase/app";
+   import { getDatabase, ref } from "firebase/database";
 
-    // راه‌اندازی Firebase  
-    let db, eventsRef;  
-    try {  
-        firebase.initializeApp(firebaseConfig);  
-        console.log("Firebase initialized successfully");  
-        db = firebase.database();  
-        eventsRef = db.ref('TashdidEvents');  
-    } catch (error) {  
-        console.error("Firebase initialization failed:", error);  
-    }  
+   const firebaseConfig = {
+     apiKey: "AIzaSyDWoD7zEs4ReTNpm929WKERKni8s_AVPtY",
+     authDomain: "tashdidevents.firebaseapp.com",
+     databaseURL: "https://tashdidevents-default-rtdb.firebaseio.com",
+     projectId: "tashdidevents",
+     storageBucket: "tashdidevents.appspot.com",
+     messagingSenderId: "368678384446",
+     appId: "1:368678384446:web:c039103ba29ce5b7d6b26f",
+     measurementId: "G-T9R0GKXJ16"
+   };
+
+   // Initialize Firebase
+   const app = initializeApp(firebaseConfig);
+   const db = getDatabase(app);
+   const eventsRef = ref(db, 'TashdidEvents');
+</script>
+
+<script>
 
     let currentEventId = null;  
     const correctPassword = "0789";  
