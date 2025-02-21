@@ -244,15 +244,23 @@
 
 <script>  
     // تنظیمات Firebase  
-    const firebaseConfig = {  
-        apiKey: "AIzaSyATpQiBdeYvwIOLlAwx1zqKaQRuPtUh_Lc",  
-        authDomain: "tashdid-events.firebaseapp.com",  
-        databaseURL: "https://console.firebase.google.com/u/0/project/tashdid-events/database/tashdid-events-default-rtdb/data/~2F",  
-        projectId: "tashdid-events",  
-        storageBucket: "tashdid-events.firebasestorage.app",  
-        messagingSenderId: "419700464684",  
-        appId: "1:419700464684:web:2593ebf927315ec6b34589"  
-    };  
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDWoD7zEs4ReTNpm929WKERKni8s_AVPtY",
+  authDomain: "tashdidevents.firebaseapp.com",
+  projectId: "tashdidevents",
+  storageBucket: "tashdidevents.firebasestorage.app",
+  messagingSenderId: "368678384446",
+  appId: "1:368678384446:web:c039103ba29ce5b7d6b26f",
+  measurementId: "G-T9R0GKXJ16"
+};
 
     // راه‌اندازی Firebase  
     let db, eventsRef;  
