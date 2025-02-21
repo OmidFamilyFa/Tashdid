@@ -1,0 +1,477 @@
+<!DOCTYPE html>  <html lang="fa" dir="rtl">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>مدیریت تایپوبازی تشدید</title>  
+    <style>  
+        * {  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+            font-family: 'Segoe UI', Tahoma, sans-serif;  
+        }  
+        body {  
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe8d6 100%);  
+            color: #333;  
+            padding: 1rem;  
+            line-height: 1.6;  
+            font-size: 1rem;  
+            text-align: center;  
+        }  
+        .container {  
+            max-width: 100%;  
+            margin: 0 auto;  
+        }  
+        .header {  
+            padding: 1.5rem;  
+            background: #fff;  
+            border-radius: 15px;  
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);  
+            margin-bottom: 1.5rem;  
+            animation: fadeIn 0.5s ease-in;  
+        }  
+        .btn {  
+            padding: 0.7rem 1.5rem;  
+            background: #ff5722;  
+            color: white;  
+            border: none;  
+            border-radius: 8px;  
+            cursor: pointer;  
+            transition: transform 0.2s, background 0.3s;  
+            font-size: 0.9rem;  
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);  
+            display: inline-block;  
+        }  
+        .btn:hover {  
+            background: #e64a19;  
+            transform: translateY(-2px);  
+        }  
+        .event-list, .event-details, .pass-section {  
+            background: white;  
+            padding: 1.5rem;  
+            border-radius: 15px;  
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);  
+            margin-bottom: 1.5rem;  
+            animation: fadeIn 0.5s ease-in;  
+        }  
+        .event-item {  
+            padding: 1rem;  
+            border-bottom: 1px solid #eee;  
+            cursor: pointer;  
+            transition: background 0.3s;  
+            border-radius: 10px;  
+        }  
+        .event-item:hover {  
+            background: #fff0e6;  
+        }  
+        .form-group {  
+            margin-bottom: 1.2rem;  
+            text-align: center;  
+        }  
+        .form-group label {  
+            display: block;  
+            margin-bottom: 0.4rem;  
+            font-size: 0.9rem;  
+            color: #555;  
+        }  
+        .form-group input, .form-group select {  
+            width: 100%;  
+            max-width: 300px;  
+            padding: 0.6rem;  
+            border: 1px solid #ddd;  
+            border-radius: 8px;  
+            font-size: 1rem;  
+            transition: border-color 0.3s;  
+            margin: 0 auto;  
+            display: block;  
+        }  
+        .form-group input:focus, .form-group select:focus {  
+            border-color: #ff5722;  
+            outline: none;  
+        }  
+        .button-group {  
+            display: flex;  
+            gap: 1rem;  
+            flex-wrap: wrap;  
+            justify-content: center;  
+            margin-top: 1.5rem;  
+        }  
+        table {  
+            width: 100%;  
+            border-collapse: collapse;  
+            margin-top: 1.5rem;  
+            overflow-x: auto;  
+            display: block;  
+            border-radius: 10px;  
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);  
+        }  
+        th, td {  
+            padding: 0.8rem;  
+            border: 1px solid #eee;  
+            text-align: center;  
+            font-size: 0.9rem;  
+        }  
+        th {  
+            background: #ff5722;  
+            color: white;  
+            font-weight: bold;  
+        }  
+        .participant-row:nth-child(even) {  
+            background: #f8f9fa;  
+        }  
+        .hidden {  
+            display: none;  
+        }  
+        @keyframes fadeIn {  
+            from { opacity: 0; transform: translateY(10px); }  
+            to { opacity: 1; transform: translateY(0); }  
+        }  
+        @media (max-width: 768px) {  
+            body { padding: 0.5rem; font-size: 0.9rem; }  
+            .btn { width: 48%; padding: 0.6rem; }  
+            th, td { padding: 0.6rem; font-size: 0.8rem; }  
+            .event-list, .event-details, .pass-section { padding: 1rem; }  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container">  
+        <div class="header">  
+            <h1>تایپوبازی تشدید</h1>  
+        </div>  <!-- بخش رمز عبور -->  
+    <div id="passSection" class="pass-section">  
+        <h2>رمز عبور را وارد کنید</h2>  
+        <div class="form-group">  
+            <label>رمز:</label>  
+            <input type="password" id="passwordInput" placeholder="رمز را اینجا وارد کنید">  
+        </div>  
+        <div class="button-group">  
+            <button class="btn" onclick="checkPassword()">ورود</button>  
+        </div>  
+    </div>  
+
+    <!-- صفحه اصلی -->  
+    <div id="homePage" class="event-list hidden">  
+        <h2>لیست دورهمی‌ها</h2>  
+        <div id="eventList"></div>  
+        <div class="button-group">  
+            <button class="btn" onclick="showAddEventForm()">افزودن دورهمی جدید</button>  
+        </div>  
+    </div>  
+
+    <!-- فرم افزودن دورهمی -->  
+    <div id="addEventForm" class="event-details hidden">  
+        <h2>افزودن دورهمی جدید</h2>  
+        <div class="form-group">  
+            <input type="text" id="eventDate" placeholder="(تاریخ (مثال: ۲۵ بهمن ۱۴۰۳">  
+        </div>  
+        <div class="button-group">  
+            <button class="btn" onclick="addEvent()">ذخیره</button>  
+            <button class="btn" onclick="showHomePage()">بازگشت</button>  
+        </div>  
+    </div>  
+
+    <!-- صفحه جزئیات دورهمی -->  
+    <div id="eventDetails" class="event-details hidden">  
+        <h2 id="eventTitle"></h2>  
+        <div class="form-group">  
+            <label>نام استاد:</label>  
+            <input type="text" id="teacherName">  
+        </div>  
+        <div class="form-group">  
+            <label>مدت زمان جلسه (ساعت):</label>  
+            <input type="number" id="sessionDuration" step="0.5" min="0">  
+        </div>  
+        <h3>شرکت‌کنندگان</h3>  
+        <table>  
+            <thead>  
+                <tr>  
+                    <th>شماره</th>  
+                    <th>نام</th>  
+                    <th>جنسیت</th>  
+                    <th>سال تولد</th>  
+                    <th>مدرسه</th>  
+                    <th>شماره تلفن</th>  
+                    <th>حضور</th>  
+                    <th>عملیات</th>  
+                </tr>  
+            </thead>  
+            <tbody id="participantsList"></tbody>  
+        </table>  
+        <div class="button-group">  
+            <button class="btn" onclick="showAddParticipantForm()">افزودن شرکت‌کننده</button>  
+            <button class="btn" onclick="saveEventDetails()">ذخیره تغییرات</button>  
+            <button class="btn" onclick="showHomePage()">بازگشت</button>  
+        </div>  
+    </div>  
+
+    <!-- فرم افزودن شرکت‌کننده -->  
+    <div id="addParticipantForm" class="event-details hidden">  
+        <h2>افزودن شرکت‌کننده</h2>  
+        <div class="form-group">  
+            <label>نام:</label>  
+            <input type="text" id="participantName">  
+        </div>  
+        <div class="form-group">  
+            <label>جنسیت:</label>  
+            <select id="participantGender">  
+                <option value="مرد">مرد</option>  
+                <option value="زن">زن</option>  
+            </select>  
+        </div>  
+        <div class="form-group">  
+            <label>سال تولد:</label>  
+            <input type="number" id="participantBirthYear" min="2000" max="2025">  
+        </div>  
+        <div class="form-group">  
+            <label>مدرسه:</label>  
+            <input type="text" id="participantSchool">  
+        </div>  
+        <div class="form-group">  
+            <label>شماره تلفن:</label>  
+            <input type="tel" id="participantPhone" pattern="[0-9]{10,11}" placeholder="مثال: ۰۹۱۲۳۴۵۶۷۸۹">  
+        </div>  
+        <div class="button-group">  
+            <button class="btn" onclick="addParticipant()">ذخیره</button>  
+            <button class="btn" onclick="showEventDetails()">بازگشت</button>  
+        </div>  
+    </div>  
+</div>  
+
+<!-- Firebase SDK -->  
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>  
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>  
+
+<script>  
+    // تنظیمات Firebase  
+    const firebaseConfig = {  
+        apiKey: "AIzaSyATpQiBdeYvwIOLlAwx1zqKaQRuPtUh_Lc",  
+        authDomain: "tashdid-events.firebaseapp.com",  
+        databaseURL: "https://console.firebase.google.com/u/0/project/tashdid-events/database/tashdid-events-default-rtdb/data/~2F",  
+        projectId: "tashdid-events",  
+        storageBucket: "tashdid-events.firebasestorage.app",  
+        messagingSenderId: "419700464684",  
+        appId: "1:419700464684:web:2593ebf927315ec6b34589"  
+    };  
+
+    // راه‌اندازی Firebase  
+    let db, eventsRef;  
+    try {  
+        firebase.initializeApp(firebaseConfig);  
+        console.log("Firebase initialized successfully");  
+        db = firebase.database();  
+        eventsRef = db.ref('TashdidEvents');  
+    } catch (error) {  
+        console.error("Firebase initialization failed:", error);  
+    }  
+
+    let currentEventId = null;  
+    const correctPassword = "0789";  
+
+    // چک کردن رمز عبور  
+    function checkPassword() {  
+        console.log("Button clicked, checking password...");  
+        const input = document.getElementById('passwordInput').value;  
+        console.log("Entered password:", input);  
+        if (input === correctPassword) {  
+            console.log("Password is correct, showing home page...");  
+            document.getElementById('passSection').classList.add('hidden');  
+            document.getElementById('homePage').classList.remove('hidden');  
+            renderEventList();  
+        } else {  
+            console.log("Password is incorrect");  
+            alert('رمز عبور اشتباه است!');  
+        }  
+    }  
+
+    // تبدیل اعداد انگلیسی به فارسی  
+    function toPersianDigits(num) {  
+        const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];  
+        return num.toString().replace(/\d/g, d => persianDigits[parseInt(d)]);  
+    }  
+
+    // اعتبارسنجی تاریخ شمسی  
+    function isValidPersianDate(dateStr) {  
+        const months = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];  
+        const trimmedDate = dateStr.trim();  
+        const parts = trimmedDate.split(" ");  
+        if (parts.length !== 3) return false;  
+
+        const [day, month, year] = parts;  
+        const dayNum = parseInt(day.replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));  
+        const yearNum = parseInt(year.replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));  
+
+        return (  
+            !isNaN(dayNum) && dayNum >= 1 && dayNum <= 31 &&  
+            months.includes(month) &&  
+            !isNaN(yearNum) && yearNum >= 1400 && yearNum <= 1420  
+        );  
+    }  
+
+    function showHomePage() {  
+        console.log("Showing home page...");  
+        document.getElementById('homePage').classList.remove('hidden');  
+        document.getElementById('addEventForm').classList.add('hidden');  
+        document.getElementById('eventDetails').classList.add('hidden');  
+        document.getElementById('addParticipantForm').classList.add('hidden');  
+        renderEventList();  
+    }  
+
+    function showAddEventForm() {  
+        console.log("Showing add event form...");  
+        document.getElementById('homePage').classList.add('hidden');  
+        document.getElementById('addEventForm').classList.remove('hidden');  
+    }  
+
+    function showEventDetails() {  
+        console.log("Showing event details...");  
+        document.getElementById('eventDetails').classList.remove('hidden');  
+        document.getElementById('addParticipantForm').classList.add('hidden');  
+    }  
+
+    function showAddParticipantForm() {  
+        console.log("Showing add participant form...");  
+        document.getElementById('eventDetails').classList.add('hidden');  
+        document.getElementById('addParticipantForm').classList.remove('hidden');  
+    }  
+
+    function renderEventList() {  
+        if (!eventsRef) {  
+            console.error("eventsRef is not defined, Firebase not initialized");  
+            return;  
+        }  
+        console.log("Rendering event list...");  
+        const eventList = document.getElementById('eventList');  
+        eventsRef.on('value', (snapshot) => {  
+            console.log("Data fetched from Firebase:", snapshot.val());  
+            eventList.innerHTML = '';  
+            const events = snapshot.val() || {};  
+            let index = 1;  
+            for (const [id, event] of Object.entries(events)) {  
+                const div = document.createElement('div');  
+                div.className = 'event-item';  
+                div.innerHTML = `دورهمی شماره ${toPersianDigits(index)} | تاریخ: ${event.date}`;  
+                div.onclick = () => loadEventDetails(id);  
+                eventList.appendChild(div);  
+                index++;  
+            }  
+        }, (error) => {  
+            console.error("Error fetching events:", error);  
+        });  
+    }  
+
+    function addEvent() {  
+        const date = document.getElementById('eventDate').value.trim();  
+        if (date && isValidPersianDate(date)) {  
+            const newEventRef = eventsRef.push();  
+            newEventRef.set({  
+                date,  
+                teacher: '',  
+                duration: 0,  
+                participants: {}  
+            }).then(() => {  
+                console.log("Event added successfully");  
+                document.getElementById('eventDate').value = '';  
+                showHomePage();  
+            }).catch((error) => console.error("Error adding event:", error));  
+        } else {  
+            alert("لطفاً تاریخ را به فرمت صحیح (مثال: ۲۵ بهمن ۱۴۰۳) وارد کنید.");  
+        }  
+    }  
+
+    function loadEventDetails(eventId) {  
+        currentEventId = eventId;  
+        eventsRef.child(eventId).on('value', (snapshot) => {  
+            console.log("Event details fetched:", snapshot.val());  
+            const event = snapshot.val();  
+            document.getElementById('homePage').classList.add('hidden');  
+            document.getElementById('eventDetails').classList.remove('hidden');  
+            document.getElementById('eventTitle').innerText = `دورهمی | ${event.date}`;  
+            document.getElementById('teacherName').value = event.teacher || '';  
+            document.getElementById('sessionDuration').value = event.duration || 0;  
+
+            const participantsList = document.getElementById('participantsList');  
+            participantsList.innerHTML = '';  
+            const participants = event.participants || {};  
+            let pIndex = 1;  
+            Object.entries(participants).sort((a, b) => a[1].name.localeCompare(b[1].name)).forEach(([pId, p]) => {  
+                const tr = document.createElement('tr');  
+                tr.className = 'participant-row';  
+                tr.innerHTML = `  
+                    <td>${toPersianDigits(pIndex)}</td>  
+                    <td>${p.name}</td>  
+                    <td>${p.gender}</td>  
+                    <td>${toPersianDigits(p.birthYear)}</td>  
+                    <td>${p.school}</td>  
+                    <td>${toPersianDigits(p.phone)}</td>  
+                    <td><input type="checkbox" ${p.present ? 'checked' : ''} onchange="updatePresence('${pId}', this.checked)"></td>  
+                    <td><button class="btn" onclick="editParticipant('${pId}')">ویرایش</button></td>  
+                `;  
+                participantsList.appendChild(tr);  
+                pIndex++;  
+            });  
+        }, (error) => console.error("Error loading event details:", error));  
+    }  
+
+    function saveEventDetails() {  
+        const updates = {  
+            teacher: document.getElementById('teacherName').value,  
+            duration: parseFloat(document.getElementById('sessionDuration').value) || 0  
+        };  
+        eventsRef.child(currentEventId).update(updates).then(() => {  
+            console.log("Event details saved");  
+            showHomePage();  
+        }).catch((error) => console.error("Error saving event details:", error));  
+    }  
+
+    function addParticipant() {  
+        const participant = {  
+            name: document.getElementById('participantName').value,  
+            gender: document.getElementById('participantGender').value,  
+            birthYear: document.getElementById('participantBirthYear').value,  
+            school: document.getElementById('participantSchool').value,  
+            phone: document.getElementById('participantPhone').value,  
+            present: false  
+        };  
+        if (participant.name && participant.birthYear && participant.phone) {  
+            const newParticipantRef = eventsRef.child(currentEventId).child('participants').push();  
+            newParticipantRef.set(participant).then(() => {  
+                console.log("Participant added");  
+                clearParticipantForm();  
+                showEventDetails();  
+            }).catch((error) => console.error("Error adding participant:", error));  
+        }  
+    }  
+
+    function updatePresence(participantId, present) {  
+        eventsRef.child(currentEventId).child('participants').child(participantId).update({ present })  
+            .catch((error) => console.error("Error updating presence:", error));  
+    }  
+
+    function editParticipant(participantId) {  
+        eventsRef.child(currentEventId).child('participants').child(participantId).once('value', (snapshot) => {  
+            const p = snapshot.val();  
+            document.getElementById('participantName').value = p.name;  
+            document.getElementById('participantGender').value = p.gender;  
+            document.getElementById('participantBirthYear').value = p.birthYear;  
+            document.getElementById('participantSchool').value = p.school;  
+            document.getElementById('participantPhone').value = p.phone;  
+            showAddParticipantForm();  
+            eventsRef.child(currentEventId).child('participants').child(participantId).remove();  
+        }, (error) => console.error("Error editing participant:", error));  
+    }  
+
+    function clearParticipantForm() {  
+        document.getElementById('participantName').value = '';  
+        document.getElementById('participantGender').value = 'مرد';  
+        document.getElementById('participantBirthYear').value = '';  
+        document.getElementById('participantSchool').value = '';  
+        document.getElementById('participantPhone').value = '';  
+    }  
+
+    // تست اولیه  
+    console.log("Script loaded successfully");  
+</script>
+
+</body>  
+</html>
