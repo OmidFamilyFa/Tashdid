@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدیریت تایپوبازی تشدید</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5QsNDxYbG1+7HgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAk0lEQVRIx+2SMQ7AIAgDsf7v/z87IQVhgKBCkTEhMTExITExMTExITExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEhMTExMTExMTExMTExMTExMTEX">
     <style>
         * {
             margin: 0;
@@ -48,7 +47,7 @@
             background: #e64a19;
             transform: translateY(-2px);
         }
-        .event-list, .event-details, .pass-section {
+        .event-list, .event-details {
             background: white;
             padding: 1.5rem;
             border-radius: 15px;
@@ -132,7 +131,7 @@
             body { padding: 0.5rem; font-size: 0.9rem; }
             .btn { width: 48%; padding: 0.6rem; }
             th, td { padding: 0.6rem; font-size: 0.8rem; }
-            .event-list, .event-details, .pass-section { padding: 1rem; }
+            .event-list, .event-details { padding: 1rem; }
         }
     </style>
 </head>
@@ -142,20 +141,8 @@
             <h1>تایپوبازی تشدید</h1>
         </div>
 
-        <!-- بخش رمز عبور -->
-        <div id="passSection" class="pass-section">
-            <h2>رمز عبور را وارد کنید</h2>
-            <div class="form-group">
-                <label>رمز:</label>
-                <input type="password" id="passwordInput" placeholder="رمز را اینجا وارد کنید">
-            </div>
-            <div class="button-group">
-                <button class="btn" onclick="checkPassword()">ورود</button>
-            </div>
-        </div>
-
         <!-- صفحه اصلی -->
-        <div id="homePage" class="event-list hidden">
+        <div id="homePage" class="event-list">
             <h2>لیست دورهمی‌ها</h2>
             <div id="eventList"></div>
             <div class="button-group">
@@ -167,7 +154,8 @@
         <div id="addEventForm" class="event-details hidden">
             <h2>افزودن دورهمی جدید</h2>
             <div class="form-group">
-                <input type="text" id="eventDate" placeholder="(تاریخ (مثال: ۲۵ بهمن ۱۴۰۳">
+                <label>تاریخ (مانند ۲۵ بهمن ۱۴۰۳):</label>
+                <input type="text" id="eventDate" placeholder="مثال: ۲۵ بهمن ۱۴۰۳">
             </div>
             <div class="button-group">
                 <button class="btn" onclick="addEvent()">ذخیره</button>
@@ -246,9 +234,8 @@
         // URL فایل data.json در ریپازیتوری
         const dataUrl = 'data.json';
 
-        let eventsData = {};
+        let eventsData = { TashdidEvents: [] };
         let currentEventId = null;
-        const correctPassword = "0789";
 
         // بارگذاری داده‌ها از data.json
         async function loadData() {
@@ -256,17 +243,18 @@
                 const response = await fetch(dataUrl);
                 if (!response.ok) throw new Error('Failed to load data');
                 eventsData = await response.json();
-                if (!eventsData.TashdidEvents) eventsData.TashdidEvents = {};
+                if (!eventsData.TashdidEvents) eventsData.TashdidEvents = [];
                 renderEventList();
             } catch (error) {
                 console.error("Error loading data:", error);
-                eventsData = { TashdidEvents: {} };
+                eventsData = { TashdidEvents: [] };
             }
         }
 
-        // ذخیره داده‌ها در data.json (به صورت محلی، چون GitHub Pages فقط خواندنی است)
+        // ذخیره داده‌ها در data.json (به صورت شبیه‌سازی، چون GitHub Pages فقط خواندنی است)
         async function saveData() {
             try {
+                // اینجا برای تست شبیه‌سازی می‌کنیم؛ برای ذخیره واقعی نیاز به API GitHub یا سرور داری
                 const response = await fetch(dataUrl, {
                     method: 'PUT',
                     headers: {
@@ -279,22 +267,6 @@
             } catch (error) {
                 console.error("Error saving data:", error);
                 alert("خطا در ذخیره داده‌ها. لطفاً بعداً دوباره امتحان کنید.");
-            }
-        }
-
-        // چک کردن رمز عبور
-        function checkPassword() {
-            console.log("Button clicked, checking password...");
-            const input = document.getElementById('passwordInput').value;
-            console.log("Entered password:", input);
-            if (input === correctPassword) {
-                console.log("Password is correct, showing home page...");
-                document.getElementById('passSection').classList.add('hidden');
-                document.getElementById('homePage').classList.remove('hidden');
-                renderEventList();
-            } else {
-                console.log("Password is incorrect");
-                alert('رمز عبور اشتباه است!');
             }
         }
 
@@ -353,28 +325,28 @@
             console.log("Rendering event list...");
             const eventList = document.getElementById('eventList');
             eventList.innerHTML = '';
-            const events = eventsData.TashdidEvents || {};
+            const events = eventsData.TashdidEvents || [];
             let index = 1;
-            for (const [id, event] of Object.entries(events)) {
+            events.forEach((event, id) => {
                 const div = document.createElement('div');
                 div.className = 'event-item';
                 div.innerHTML = `دورهمی شماره ${toPersianDigits(index)} | تاریخ: ${event.date}`;
                 div.onclick = () => loadEventDetails(id);
                 eventList.appendChild(div);
                 index++;
-            }
+            });
         }
 
         function addEvent() {
             const date = document.getElementById('eventDate').value.trim();
             if (date && isValidPersianDate(date)) {
-                const newEventId = Date.now().toString(); // استفاده از timestamp به عنوان ID
-                eventsData.TashdidEvents[newEventId] = {
+                const newEvent = {
                     date,
                     teacher: '',
                     duration: 0,
-                    participants: {}
+                    participants: []
                 };
+                eventsData.TashdidEvents.push(newEvent);
                 saveData().then(() => {
                     console.log("Event added successfully");
                     document.getElementById('eventDate').value = '';
@@ -385,21 +357,21 @@
             }
         }
 
-        function loadEventDetails(eventId) {
-            currentEventId = eventId;
-            const event = eventsData.TashdidEvents[eventId];
+        function loadEventDetails(index) {
+            currentEventId = index;
+            const event = eventsData.TashdidEvents[index];
             if (event) {
                 document.getElementById('homePage').classList.add('hidden');
                 document.getElementById('eventDetails').classList.remove('hidden');
-                document.getElementById('eventTitle').innerText = `دورهمی | ${event.date}`;
+                document.getElementById('eventTitle').innerText = `دورهمی شماره ${toPersianDigits(index + 1)} | ${event.date}`;
                 document.getElementById('teacherName').value = event.teacher || '';
                 document.getElementById('sessionDuration').value = event.duration || 0;
 
                 const participantsList = document.getElementById('participantsList');
                 participantsList.innerHTML = '';
-                const participants = event.participants || {};
+                const participants = event.participants || [];
                 let pIndex = 1;
-                Object.entries(participants).sort((a, b) => a[1].name.localeCompare(b[1].name)).forEach(([pId, p]) => {
+                participants.sort((a, b) => a.name.localeCompare(b.name)).forEach((p, pId) => {
                     const tr = document.createElement('tr');
                     tr.className = 'participant-row';
                     tr.innerHTML = `
@@ -409,8 +381,8 @@
                         <td>${toPersianDigits(p.birthYear)}</td>
                         <td>${p.school}</td>
                         <td>${toPersianDigits(p.phone)}</td>
-                        <td><input type="checkbox" ${p.present ? 'checked' : ''} onchange="updatePresence('${pId}', this.checked)"></td>
-                        <td><button class="btn" onclick="editParticipant('${pId}')">ویرایش</button></td>
+                        <td><input type="checkbox" ${p.present ? 'checked' : ''} onchange="updatePresence(${pId}, this.checked)"></td>
+                        <td><button class="btn" onclick="editParticipant(${pId})">ویرایش</button></td>
                     `;
                     participantsList.appendChild(tr);
                     pIndex++;
@@ -419,7 +391,7 @@
         }
 
         function saveEventDetails() {
-            if (currentEventId) {
+            if (currentEventId !== null) {
                 eventsData.TashdidEvents[currentEventId] = {
                     ...eventsData.TashdidEvents[currentEventId],
                     teacher: document.getElementById('teacherName').value,
@@ -442,35 +414,35 @@
                 present: false
             };
             if (participant.name && participant.birthYear && participant.phone) {
-                const newParticipantId = Date.now().toString(); // استفاده از timestamp به عنوان ID
-                if (currentEventId && eventsData.TashdidEvents[currentEventId]) {
-                    eventsData.TashdidEvents[currentEventId].participants[newParticipantId] = participant;
+                if (currentEventId !== null) {
+                    eventsData.TashdidEvents[currentEventId].participants.push(participant);
                     saveData().then(() => {
                         console.log("Participant added");
                         clearParticipantForm();
                         showEventDetails();
+                        loadEventDetails(currentEventId);
                     });
                 }
             }
         }
 
-        function updatePresence(participantId, present) {
-            if (currentEventId && eventsData.TashdidEvents[currentEventId] && eventsData.TashdidEvents[currentEventId].participants[participantId]) {
-                eventsData.TashdidEvents[currentEventId].participants[participantId].present = present;
+        function updatePresence(participantIndex, present) {
+            if (currentEventId !== null && eventsData.TashdidEvents[currentEventId] && eventsData.TashdidEvents[currentEventId].participants[participantIndex]) {
+                eventsData.TashdidEvents[currentEventId].participants[participantIndex].present = present;
                 saveData().then(() => console.log("Presence updated"));
             }
         }
 
-        function editParticipant(participantId) {
-            if (currentEventId && eventsData.TashdidEvents[currentEventId] && eventsData.TashdidEvents[currentEventId].participants[participantId]) {
-                const p = eventsData.TashdidEvents[currentEventId].participants[participantId];
+        function editParticipant(participantIndex) {
+            if (currentEventId !== null && eventsData.TashdidEvents[currentEventId] && eventsData.TashdidEvents[currentEventId].participants[participantIndex]) {
+                const p = eventsData.TashdidEvents[currentEventId].participants[participantIndex];
                 document.getElementById('participantName').value = p.name;
                 document.getElementById('participantGender').value = p.gender;
                 document.getElementById('participantBirthYear').value = p.birthYear;
                 document.getElementById('participantSchool').value = p.school;
                 document.getElementById('participantPhone').value = p.phone;
                 showAddParticipantForm();
-                delete eventsData.TashdidEvents[currentEventId].participants[participantId];
+                eventsData.TashdidEvents[currentEventId].participants.splice(participantIndex, 1);
                 saveData();
             }
         }
